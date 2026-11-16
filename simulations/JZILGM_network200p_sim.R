@@ -30,6 +30,9 @@ net200 <- netUtils::sample_lfr(n = p,
                                min_community = 10,
                                max_community = 30)
 
+# let's save the network to subsequently run the ZILGM method on it:
+saveRDS(net200, "net200.RDS")
+
 # to visualize the network:
 
 plot(net200,
@@ -79,6 +82,12 @@ Xs_1000 <- list()
 for (i in 1:length(SEED)){
   Xs_1000[[i]] <- k_net_datagen(net = net200, k = k, seed = SEED[i], n = 1000, p = p, theta = 0.125, means = c(3,6,9), zerop = 0.7)
 }
+
+# Let's store the matrices in objects we can use when we need to run the comparison with ZILGM:
+
+saveRDS(Xs_250, "net200_n250_Xs_03.RDS")
+saveRDS(Xs_500, "net200_n500_Xs_03.RDS")
+saveRDS(Xs_1000, "net200_n1000_Xs_03.RDS")
 
 # Here we verify if the data generation meets the 0.3 zero percentage desired in the simulated matrices
 
